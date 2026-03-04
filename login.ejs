@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header2'); %>
+</header>
+
+<main>
+ 
+  <form action="/loginbutton" method="post">
+      <div class="form-group">
+        <label>Passport #</label>
+        <input type="text" class="form-control" name="Passport_number">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" name="Password">
+      </div>
+      <button type="submit" class="btn btn-warning btn-lg">Log-In</button>
+    </form>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
+

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header3'); %>
+</header>
+
+<main>
+  <div class="jumbotron">
+    <h1>User Profile</h1>
+    <p><strong>Passport Number:</strong> <%= user.passport_number %></p>
+    <p><strong>Current flights booked:</strong> <%= bookings.length %></p>
+  </div>
+
+  <h2>Your Bookings</h2>
+  <% if (bookings && bookings.length > 0) { %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>Flight Number</th>
+          <th>Departure Time</th>
+          <th>Arrival Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% bookings.forEach(function(booking) { %>
+          <tr>
+            <td><%= booking.booking_id %></td>
+            <td><%= booking.flight_number %></td>
+            <td><%= new Date(booking.departure_time).toLocaleString() %></td>
+            <td><%= new Date(booking.arrival_time).toLocaleString() %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <div class="alert alert-info">You have no current bookings.</div>
+  <% } %>
+
+  <form action="/logout" method="POST">
+    <button type="submit" class="btn btn-warning btn-lg">Logout</button>
+  </form>
+
+  <form action="/deleteaccount" method="POST">
+    <button type="submit" class="btn btn-danger btn-lg">Delete Account</button>
+  </form>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>

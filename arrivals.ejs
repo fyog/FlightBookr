@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body class="container">
+
+  <header>
+    <%- include('../partials/header3'); %>
+  </header>
+
+  <main>
+    <div class="jumbotron">
+      <form action="/arrivalsbutton" method="post">
+        <div class="form-group">
+          <label>Airport Code</label>
+          <input type="text" class="form-control" name="Airport_code">
+        </div>
+        <button type="submit" class="btn btn-warning btn-lg">Submit</button>
+      </form>
+    </div>
+    <% if (flights && flights.length> 0){ %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Flight Number</th>
+            <th>Departure Airport</th>
+            <th>Arrival Airport</th>
+            <th>Departure Time</th>
+            <th>Arrival Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% flights.forEach(function(flight) { %>
+            <tr>
+              <td>
+                <%= flight.flight_number %>
+              </td>
+              <td>
+                <%= flight.departure_airport %>
+              </td>
+              <td>
+                <%= flight.arrival_airport %>
+              </td>
+              <td>
+                <%= new Date(flight.departure_time).toLocaleString() %>
+              </td>
+              <td>
+                <%= new Date(flight.arrival_time).toLocaleString() %>
+              </td>
+            </tr>
+            <% }); %>
+        </tbody>
+      </table>
+      <% } else { %>
+        <div class="alert alert-info">No flights found for the specified airport.</div>
+        <% } %>
+  </main>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>
